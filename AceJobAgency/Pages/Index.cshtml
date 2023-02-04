@@ -1,0 +1,63 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<form id="personalInfoForm" method="post" enctype="multipart/form-data">
+    <div class="row mb-3">
+        <label asp-for="InputModel.FirstName" class="col-sm-2 col-form-label">First Name</label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="InputModel.FirstName">
+            <span asp-validation-for="InputModel.FirstName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label asp-for="InputModel.LastName" class="col-sm-2 col-form-label">Last Name</label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="InputModel.LastName">
+            <span asp-validation-for="InputModel.LastName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label asp-for="InputModel.Gender" class="col-sm-2 col-form-label">Gender</label>
+        <div class="col-sm-10">
+            <select class="form-control" asp-for="InputModel.Gender" asp-items="Model.GetGenders()"></select>
+            <span asp-validation-for="InputModel.Gender" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label asp-for="InputModel.NRIC" class="col-sm-2 col-form-label">NRIC</label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="InputModel.NRIC">
+            <span asp-validation-for="InputModel.NRIC" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label asp-for="InputModel.DateOfBirth" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="InputModel.DateOfBirth" class="form-control" autocomplete="new-password" aria-required="true" />
+            <span asp-validation-for="InputModel.DateOfBirth" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label asp-for="InputModel.Resume" class="col-sm-2 col-form-label"></label>
+        @if (string.Equals(Model.InputModel.FileName, null))
+        {
+
+            <div class="col-sm-10">
+                <input class="form-control" asp-for="InputModel.Resume" class="form-control" aria-required="true" />
+            </div>
+        }
+        else
+        {
+            <div class="col-sm-5">
+                <input class="form-control" asp-for="InputModel.FileName" class="form-control" aria-required="true" readonly />
+            </div>
+            <div class="col-sm-5">
+                <input class="form-control" asp-for="InputModel.Resume" class="form-control" aria-required="true" />
+            </div>
+        }
+    </div>
+    <button id="personalInfoSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
+</form>
